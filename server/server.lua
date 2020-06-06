@@ -10,7 +10,7 @@ end
 function StartCooldown(time)
 	cooldown = true
 	
-	if policecount > 5 then
+	if PoliceCount() > 5 then
 	    time = math.random(10, 30)
 	end
 	
@@ -22,9 +22,13 @@ end
 
 function PoliceCount()
 	local policecount = 0
+	local xPlayers = ESX.GetPlayers()
 	for i=1, #xPlayers, 1 do
 		local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
 		if xPlayer.job.name == 'police' then
 			policecount = policecount + 1
 		end
 	end
+
+	return policecount
+end
